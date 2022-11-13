@@ -36,13 +36,13 @@ export class FavoritosService {
     }
     let objLista = JSON.parse(listaStorage); //Convierte el texto plano a objeto para poder ingresarlo
     this.favoritosDelUsuario = objLista;
-  }  
+  }
 
   eliminarLista(lista: Favorito) {
     // eslint-disable-next-line max-len
     let nuevoListado = this.favoritosDelUsuario.filter((listaItem)=> listaItem.idLugar !== lista.idLugar); //Guardamos todas las listas menos la lista a eliminar //filter devuelve un arreglo de listas
     this.favoritosDelUsuario = nuevoListado;
     this.guardarStorage();
-  }  
+  }
 
 }

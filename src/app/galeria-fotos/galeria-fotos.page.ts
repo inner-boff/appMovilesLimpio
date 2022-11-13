@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Favorito } from '../models/favorito.model';
-import { FavoritosService } from '../services/favoritos.service';
 import { AuthService } from '../services/auth.service';
 
-
 const IMAGE_DIR = 'stored-images';
-
 
 interface ArchivoLocal {
 	name: string;
@@ -24,21 +20,17 @@ interface ArchivoLocal {
 export class GaleriaFotosPage implements OnInit {
 
   images: ArchivoLocal[] = [];
-  public rutaImagen: string; 
-  public nuevoListado: Favorito[];
-  public listaFav: Favorito[];
 
   constructor(
-    	private plt: Platform,
+    private plt: Platform,
 		private loadingCtrl: LoadingController,
 		private toastCtrl: ToastController,
-		public favoritosService: FavoritosService,
 		public authService: AuthService
   ) { }
 
   async ngOnInit() {
     this.cargarArchivos();
- }
+  }
 
   async cargarArchivos() {
 		this.images = [];
@@ -49,7 +41,8 @@ export class GaleriaFotosPage implements OnInit {
 		await loading.present();
 
 		Filesystem.readdir({
-			path: `${IMAGE_DIR}/${this.authService.email.split('@')[0]}`,
+			//path: IMAGE_DIR,
+			path: `${IMAGE_DIR}/${this.authService.email}`,
 			directory: Directory.Data
 		})
 			.then(
@@ -58,7 +51,8 @@ export class GaleriaFotosPage implements OnInit {
 				},
 				async (err) => {
 					await Filesystem.mkdir({
-						path:  `${IMAGE_DIR}/${this.authService.email.split('@')[0]}`,
+						//path: IMAGE_DIR,
+						path:  `${IMAGE_DIR}/${this.authService.email}`,
 						directory: Directory.Data
 					});
 				}
@@ -71,8 +65,8 @@ export class GaleriaFotosPage implements OnInit {
 	// base on the name of the file
 	async cargarDataDelArchivo(fileNames: any[]) {
 		for (const f of fileNames) {
-			const filePath =  `${IMAGE_DIR}/${this.authService.email.split('@')[0]}/${f.name}`;
-			//const filePath = `${IMAGE_DIR}/${this.authService.email.split('@')[0]}/${f.name}`;
+			//const filePath = `${IMAGE_DIR}/${f.name}`;
+			const filePath =  `${IMAGE_DIR}/${this.authService.email}/${f.name}`;
 
       console.log('Ruta Archivo: '+filePath);
 
@@ -87,9 +81,6 @@ export class GaleriaFotosPage implements OnInit {
 				data: `data:image/jpeg;base64,${readFile.data}`
 			});
       console.log(readFile);
-	  //nuevo:
-	  this.rutaImagen = readFile.data;
-	  console.log('ruta imagen: ' + this.rutaImagen);
 		}
 	}
 
@@ -122,7 +113,7 @@ async guardarImagen(photo: Photo) {
   const fileName = new Date().getTime() + '.jpeg';
   const savedFile = await Filesystem.writeFile({
       //path: `${IMAGE_DIR}/${fileName}`,
-	  path:  `${IMAGE_DIR}/${this.authService.email.split('@')[0]}/${fileName}`,
+	  path:  `${IMAGE_DIR}/${this.authService.email}/${fileName}`,
       data: base64Data,
       directory: Directory.Data
   });
@@ -177,7 +168,3 @@ convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
 
 
 }
-
-
-
-
