@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Galeria de Imágenes</ion-title>
+    <ion-title class="titulo">Galeria de Imágenes</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="favorito"></ion-back-button>
     </ion-buttons>
@@ -12,14 +12,13 @@
 
 	<ion-list>
 		<ion-item *ngFor="let file of images; let i = index">
-			<ion-thumbnail slot="start">
-				<ion-img [src]="file.data"></ion-img>
+
+			<!-- <img src="ruta-img" alt="imagen" onClick="this.style.height = '200px'; this.style.width = '200px';"> -->
+
+			<ion-thumbnail class="imagen-grande" slot="start">
+				<ion-img class="imagen" [src]="file.data" ></ion-img>
 			</ion-thumbnail>
-			<ion-label class="ion-text-wrap"> {{ file.name }} </ion-label>
-			<!-- Este botón puede implementrarse en el futuro para cargara las imágenes al firebase Storage -->
-			<!-- <ion-button slot="end" fill="clear" (click)="startUpload(file)">
-				<ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-			</ion-button> -->
+			<!-- <ion-label class="ion-text-wrap"> {{ file.name }} </ion-label> -->
 			<ion-button slot="end" fill="clear" (click)="borrarImagen(file)">
 				<ion-icon slot="icon-only" name="trash"></ion-icon>
 			</ion-button>

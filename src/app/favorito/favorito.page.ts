@@ -4,11 +4,8 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { Favorito } from '../models/favorito.model';
 import { AuthService } from '../services/auth.service';
 import { FavoritosService } from '../services/favoritos.service';
-//import { GaleriaFotosService } from '../services/galeria-fotos.service';
 import { Proveedor1Service } from '../services/proveedor1.service';
 
-// Photo library
-//import { PhotoLibrary } from '@awesome-cordova-plugins/photo-library/ngx';
 
 @Component({
   selector: 'app-favorito',
@@ -18,7 +15,7 @@ import { Proveedor1Service } from '../services/proveedor1.service';
 export class FavoritoPage implements OnInit {
 
   public listaFav: Favorito[];
-  public nuevoListado: Favorito[];
+  public nuevoListado: Favorito[]; // nuevo
 
 
   constructor(
@@ -27,9 +24,7 @@ export class FavoritoPage implements OnInit {
     public loadingController: LoadingController,
     public router: Router,
     public proveedor: Proveedor1Service,
-    //public galeriaFotos: GaleriaFotosService,
     public authService: AuthService,
-    //private photoLibrary: PhotoLibrary,
     public toastController: ToastController
   ) { }
 
@@ -40,17 +35,6 @@ export class FavoritoPage implements OnInit {
 
     this.nuevoListado = this.listaFav.filter((listaItem)=> listaItem.email === this.authService.email);
   }
-
-  // async eliminarLista(listaItem: Favorito) {
-  //   const loading = await this.loadingController.create();
-  //   await loading.present();
-
-  //   const user = await this.favoritos.eliminarLista(listaItem);
-  //   await loading.dismiss();
-  //   this.showAlert('Favorito eliminado', 'xx');
-  //   console.log('Eliminar lista:', listaItem);
-
-  // }
 
 
   async eliminarLista(listaItem: Favorito) {

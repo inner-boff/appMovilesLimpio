@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Injectable } from '@angular/core';
 import { Favorito } from '../models/favorito.model';
 
@@ -23,10 +24,12 @@ export class FavoritosService {
 
   guardarStorage() {
     let stringFavoritos: string = JSON.stringify(this.favoritosDelUsuario); //Convertimos el array de listas en texto plano
+    // eslint-disable-next-line max-len
     localStorage.setItem('favoritosDelUsuario', stringFavoritos); //Se debe ingresar dos parámetros, el primero un nombre y el se-gundo el contenido
   }  
 
   cargarStorage() {
+    // eslint-disable-next-line max-len
     const listaStorage = localStorage.getItem('favoritosDelUsuario'); //Se debe ingresar el parámetro con el nombre del objeto que queremos recuperar
     if(listaStorage === null) {
     return this.favoritosDelUsuario = []; //Si el Storage está vacío devolvemos el objeto listas vacío también
@@ -36,6 +39,7 @@ export class FavoritosService {
   }  
 
   eliminarLista(lista: Favorito) {
+    // eslint-disable-next-line max-len
     let nuevoListado = this.favoritosDelUsuario.filter((listaItem)=> listaItem.idLugar !== lista.idLugar); //Guardamos todas las listas menos la lista a eliminar //filter devuelve un arreglo de listas
     this.favoritosDelUsuario = nuevoListado;
     this.guardarStorage();
