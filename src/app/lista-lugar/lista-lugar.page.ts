@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// para poder tener los datos de la API
 import { Proveedor1Service } from '../services/proveedor1.service';
 
-//Interface de listado de lugares
+//Interfaz de listado de lugares
 interface ClasesEncontrada {
   nombreId:	string;
   nombre: string;
@@ -34,7 +33,7 @@ interface Idata {
   styleUrls: ['./lista-lugar.page.scss'],
 })
 export class ListaLugarPage implements OnInit {
-  
+
   data;
   lugares: Instancia[];
 
@@ -47,6 +46,11 @@ export class ListaLugarPage implements OnInit {
     this.ionViewDidLoad();
   }
 
+  /**
+   * @function ionViewDidLoad
+   * @description llama  al proveedor y obtiene los datos provistos
+   * por la API
+   */
   ionViewDidLoad(){
     this.proveedor.obtenerLista()
     .subscribe(
@@ -54,10 +58,18 @@ export class ListaLugarPage implements OnInit {
                 this.lugares = this.data.instancias},
       (error)=> {console.log(error);}
     );
-  }  
+  }
 
+  /**
+   * @function verLugar
+   * @param {string, string} id, nombre - toma los datos id y nombre proporcionados
+   * por la API a través del proveedor.
+   * @description se activa al presionar sobre un elemento de la lista de
+   * lugares de la categoría en la que se encuentra el usuario. Redirecciona
+   * al usuario a la página de detalle del lugar seleccionado.
+   */
   async verLugar(id: string, nombre: string){
-    console.log("Dio click en " + id);
+    //console.log("Dio click en " + id);
     this.proveedor.idLugar = id;
     this.proveedor.nombreLugar = nombre;
     this.router.navigateByUrl('lugar', { replaceUrl: true });
