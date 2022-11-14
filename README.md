@@ -3,8 +3,4 @@ Repositorio compartido para el proyecto de TP de la materia de Desarollo de Apli
 Creado en Ionic con Angular - 
 Autenticación de usuarios con Firebase 
 
-Integrantes:
-Pablo Blanco
-Doménico Franco
-Ariel Ledezma
-Pamela Soucre
+Integrantes: Pablo Blanco / Doménico Franco / Ariel Ledezma / Pamela Soucre
