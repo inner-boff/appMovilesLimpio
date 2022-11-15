@@ -5,14 +5,14 @@
 export const environment = {
   //Credenciales Pame:
   firebaseConfig: {
-    apiKey: "AIzaSyBPb-kn7aywGjJjE9Y3mteurRy2JySACes",
-    authDomain: "tut-firebase-simon-grimm.firebaseapp.com",
-    projectId: "tut-firebase-simon-grimm",
-    storageBucket: "tut-firebase-simon-grimm.appspot.com",
-    messagingSenderId: "755235628573",
-    appId: "1:755235628573:web:faf798e997f7c3f44f48f4",
-    measurementId: "G-0SMVYVMG3G"
-  
+    apiKey: 'AIzaSyBPb-kn7aywGjJjE9Y3mteurRy2JySACes',
+    authDomain: 'tut-firebase-simon-grimm.firebaseapp.com',
+    projectId: 'tut-firebase-simon-grimm',
+    storageBucket: 'tut-firebase-simon-grimm.appspot.com',
+    messagingSenderId: '755235628573',
+    appId: '1:755235628573:web:faf798e997f7c3f44f48f4',
+    measurementId: 'G-0SMVYVMG3G'
+
     //Credenciales Domenico:
   //  firebaseConfig : {
   //   apiKey: "AIzaSyAQaFhilDGnUYpO5MhHZb5pQad8ARkZ8QA",
@@ -21,7 +21,7 @@ export const environment = {
   //   storageBucket: "login-proyecto-aplicaciones.appspot.com",
   //   messagingSenderId: "82068058610",
   //   appId: "1:82068058610:web:2f3b0ec820191915e67b6b"
-  
+
   },
   production: false
 };

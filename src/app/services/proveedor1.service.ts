@@ -13,20 +13,27 @@ export class Proveedor1Service {
   constructor(
     public http: HttpClient
   ) {
-    console.log('Hola Proveedor1');
+    //console.log('Hola Proveedor1');
   }
 
+/**
+ * @function obtenerLista
+ * @description hace la llamada a la API (GET) y obtiene los lugares
+ * de la opción elegida.
+ */
   obtenerLista(){
-    //Se obtiene los lugares de la opcion elegida
-    console.log('haciendo GET de la API opcion')
-  
+    //console.log('haciendo GET de la API opcion')
     return this.http.get('https://epok.buenosaires.gob.ar/buscar/?texto=' + this.opcion);
   }
 
+  /**
+ * @function obtenerLugar
+ * @description hace la llamada a la API (GET) y obtiene los datos de un
+ * lugar específico por su id.
+ */
   obtenerLugar(id: string){
     //Se obtiene los datos del lugar
-    console.log('haciendo GET de la API Lugar');
-    
+    //console.log('haciendo GET de la API Lugar');
     return this.http.get('https://epok.buenosaires.gob.ar/getObjectContent?id=' + id);
   }
 

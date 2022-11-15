@@ -39,26 +39,10 @@ export class RecuperarUsuarioPage implements OnInit {
     })
   }
 
-/**
-   * @function showAlert
-   * @param {any, any} header, message
-   * @description Muestra una alerta al usuario con un mensaje configurado
-   * según los datos asignados en la función que implementa la alerta para
-   * header y mensaje.
-   * El cartel de alerta se elimina al presionar el botón OK.
-   */
-  async showAlert(header, message) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
   /**
    * @function recuperarUsuario
-   * @description valida la credencial de email ingresada por el usuario
+   * @description Se activa al presionar el botón Enviar. Este botón se
+   * activa cuando se valida la credencial de email ingresada por el usuario
    * en el campo correspondiente en el formulario reactivo. Llama a la
    * función correspondiente de AuthService que envía un correo de
    * recuperación al usuario registrado con el mail ingresado.

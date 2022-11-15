@@ -20,10 +20,25 @@ export class RegistroPage implements OnInit {
     private router: Router,
 
   ) { }
+
+    /**
+   * @function email
+   * @description toma el input del usuario en el formulario reactivo en el
+   * campo de email.
+   * @return {any} devuelve los datos correspondiente al mail
+   * ingresada por el usuario en el como credencial.
+   */
   get email() {
     return this.credentials.get('email');
   }
 
+   /**
+   * @function password
+   * @description toma el input del usuario en el formulario reactivo en el
+   * campo de contraseña.
+   * @return {any} devuelve los datos correspondiente a la contraseña
+   * ingresada por el usuario en el como credencial.
+   */
   get password() {
     return this.credentials.get('password');
   }
@@ -36,6 +51,14 @@ export class RegistroPage implements OnInit {
     })
   }
 
+  /**
+   * @function showAlert
+   * @param {any, any} header, message
+   * @description Muestra una alerta al usuario con un mensaje configurado
+   * según los datos asignados en la función que implementa la alerta para
+   * header y mensaje.
+   * El cartel de alerta se elimina al presionar el botón OK.
+   */
   async showAlert(header, message) {
     const alert = await this.alertController.create({
       header,
@@ -46,7 +69,15 @@ export class RegistroPage implements OnInit {
   }
 
 
-
+ /**
+   * @function registrarse
+   * @description Llama a la función correspondiente de AuthService que
+   * hace el registro en Firebase del nuevo usuario con ls credenciale válidas
+   * ingresadas en los campos correspondiente en el formulario reactivo.
+   * Si las credenciales son válidas, el usuario es redireccionado a login
+   * desde donde ya podrá loguearse. Se lo contrario el usuario recibe un
+   * mensaje indicando que falló el registro.
+   */
   async registrarse() {
     const loading = await this.loadingController.create();
     await loading.present();
