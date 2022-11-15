@@ -20,22 +20,23 @@ export class LoginPage implements OnInit {
     private router: Router,
   ) { }
 
-  /**
+    /**
    * @function email
-   * @description toma el input del usuario reactivo en el campo de email y lo guarda como credencial.
-   * @return {string} devuelve el string correspondiente al email ingresado
-   * por el usuario en el formulario reactivo.
+   * @description toma el input del usuario en el formulario reactivo en el
+   * campo de email.
+   * @return {any} devuelve los datos correspondiente al mail
+   * ingresada por el usuario en el como credencial.
    */
   get email() {
     this.authService.email = this.credentials.value.email; 
     return this.credentials.get('email');
   }
   /**
-   * @function email
-   * @description toma el input del usuario reactivo en el campo de
-   * contraseña y lo guarda como credencial.
-   * @return {string} devuelve el string correspondiente a la contraseña 
-   * ingresada por el usuario en el formulario reactivo.
+   * @function password
+   * @description toma el input del usuario en el formulario reactivo en el
+   * campo de contraseña.
+   * @return {any} devuelve los datos correspondiente a la contraseña
+   * ingresada por el usuario en el como credencial.
    */
   get password() {
     return this.credentials.get('password');
@@ -74,11 +75,13 @@ export class LoginPage implements OnInit {
     }
   }
 
-  /**
+/**
    * @function showAlert
    * @param {any, any} header, message
-   * @description Muestra una alerta al usuario con un mensaje asignado
-   * según el caso. El cartel de alerta se elimina al presionar el botón OK.
+   * @description Muestra una alerta al usuario con un mensaje configurado
+   * según los datos asignados en la función que implementa la alerta para
+   * header y mensaje.
+   * El cartel de alerta se elimina al presionar el botón OK.
    */
   async showAlert(header, message) {
     const alert = await this.alertController.create({

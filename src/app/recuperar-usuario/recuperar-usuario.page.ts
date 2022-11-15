@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
@@ -24,6 +21,14 @@ export class RecuperarUsuarioPage implements OnInit {
     private loadingController: LoadingController,
     private authService: AuthService
   ) { }
+
+   /**
+   * @function email
+   * @description toma el input del usuario en el formulario reactivo en el
+   * campo de email.
+   * @return {any} devuelve los datos correspondiente al mail
+   * ingresada por el usuario en el como credencial.
+   */
   get email() {
     return this.credentials.get('email');
   }
@@ -34,6 +39,14 @@ export class RecuperarUsuarioPage implements OnInit {
     })
   }
 
+/**
+   * @function showAlert
+   * @param {any, any} header, message
+   * @description Muestra una alerta al usuario con un mensaje configurado
+   * según los datos asignados en la función que implementa la alerta para
+   * header y mensaje.
+   * El cartel de alerta se elimina al presionar el botón OK.
+   */
   async showAlert(header, message) {
     const alert = await this.alertController.create({
       header,
@@ -42,44 +55,24 @@ export class RecuperarUsuarioPage implements OnInit {
     });
     await alert.present();
   }
-// este es el metodo q fuciona
-  //  recuperarUsuario() {
- 
-  //    if (this.credentials.valid && this.email.valid) {
-      
-  //      const { email } = this.credentials.value;
-  //     this.authService.recuperarContraseña(email);
-      
-  //     this.showAlert('Enviado! ', 'Por favor revise su casilla de mail');
-  //     this.router.navigateByUrl('/login', { replaceUrl: true });
-      
-  //    }else{
-  //     this.showAlert('error', 'Por favor revise su casilla de mail');
-  //    }
-  //  }
 
-  //metodo pame donde se valida el usuario, falta ver como dejar al usuario en la pagina de recuperar-usuario
-  //si el email es invalido
+  /**
+   * @function recuperarUsuario
+   * @description valida la credencial de email ingresada por el usuario
+   * en el campo correspondiente en el formulario reactivo. Llama a la
+   * función correspondiente de AuthService que envía un correo de
+   * recuperación al usuario registrado con el mail ingresado.
+   * Redirecciona al usuario a la página e login.
+   */
    recuperarUsuario() {
- 
+
     if (this.credentials.valid) {
-     
-      const { email } = this.credentials.value;
+
+    const { email } = this.credentials.value;
      this.authService.recuperarContraseña(email);
-     
-     // La siguiente alerta pasó al método 
-     // recuperarContraseña() en auth.service.ts -->
- 
-     //this.showAlert('Enviado! ', 'Por favor revise su casilla de mail');
-     //console.log("Enviando correo de recuperacion");
 
-     // Devuelva al usuario a la página de login
      this.router.navigateByUrl('/login', { replaceUrl: true });
-     
     }
-
-
-
 
   }
 }

@@ -15,7 +15,7 @@ import { Proveedor1Service } from '../services/proveedor1.service';
 export class FavoritoPage implements OnInit {
 
   public listaFav: Favorito[];
-  public nuevoListado: Favorito[]; // nuevo
+  public nuevoListado: Favorito[];
 
 
   constructor(
@@ -37,9 +37,19 @@ export class FavoritoPage implements OnInit {
   }
 
 
+  /**
+   * @function eliminarLista
+   * @param {Favorito} listaItem
+   * @description se activa al presionar el botón Eliminar el slide sobre el
+   * lugar seleccionar. Muestra una alerta al usuario para vereificar que se
+   * realizará la eliminación del elemento de la lista. Si el usuario acepta
+   * llama a la función correspondiente que elimina items del local storage
+   * del servicio favoritosService. Refresca la lista una vez realizada la
+   * acción.
+   */
   async eliminarLista(listaItem: Favorito) {
     const alerta = await this.alertController.create({
-      header: 'Seguro que quieres eliminar el lugar de Favoritos',
+      header: '¿Seguro que quieres eliminar el lugar de Favoritos?',
 
       buttons: [
         {
@@ -81,13 +91,20 @@ export class FavoritoPage implements OnInit {
   }
 
   doRefresh() {
-    this.listaFav = null; // this is replacement of splice
+    this.listaFav = null;
     this.ngOnInit(); //
     setTimeout(() => {
-      //this.router.navigate(['/favorito']);
   }, 2000);
   }
 
+    /**
+   * @function verLugar
+   * @param {string, string} id, nombre - toma los datos id y nombre
+   * proporcionados por la API a través del proveedor.
+   * @description se activa al presionar sobre un elemento de la lista de
+   * lugares favoritos del usuario. Redirecciona
+   * al usuario a la página de detalle del lugar seleccionado.
+   */
   async verLugar(id: string, nombre: string){
     console.log('Dio click en ' + id);
     this.proveedor.idLugar = id;

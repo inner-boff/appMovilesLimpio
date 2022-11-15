@@ -8,29 +8,32 @@
 </ion-header>
 
 <ion-content>
-	<h3 *ngIf="images.length === 0" class="ion-padding ion-text-center">Imágenes</h3>
+  <h3 *ngIf="images.length === 0" class="ion-padding ion-text-center">
+    Imágenes
+  </h3>
 
-	<ion-list>
-		<ion-item *ngFor="let file of images; let i = index">
-
-			<!-- <img src="ruta-img" alt="imagen" onClick="this.style.height = '200px'; this.style.width = '200px';"> -->
-
-			<ion-thumbnail class="imagen-grande" slot="start">
-				<ion-img class="imagen" [src]="file.data" ></ion-img>
-			</ion-thumbnail>
-			<!-- <ion-label class="ion-text-wrap"> {{ file.name }} </ion-label> -->
-			<ion-button slot="end" fill="clear" (click)="borrarImagen(file)">
-				<ion-icon slot="icon-only" name="trash"></ion-icon>
-			</ion-button>
-		</ion-item>
-	</ion-list>
+  <ion-list>
+    <ion-item *ngFor="let file of images; let i = index">
+      <ion-thumbnail class="imagen-grande" slot="start">
+        <ion-img class="imagen" [src]="file.data"></ion-img>
+      </ion-thumbnail>
+      <ion-button slot="end" fill="clear" (click)="borrarImagen(file)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>
-	<ion-toolbar color="primary">
-		<ion-button fill="clear" expand="full" color="light" (click)="seleccionarImagen()">
-			<ion-icon slot="start" name="camera"></ion-icon>
-			Cargar una nueva imagen
-		</ion-button>
-	</ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button
+      fill="clear"
+      expand="full"
+      color="light"
+      (click)="seleccionarImagen()"
+    >
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Cargar una nueva imagen
+    </ion-button>
+  </ion-toolbar>
 </ion-footer>
