@@ -31,7 +31,7 @@ export class FavoritoPage implements OnInit {
   ngOnInit() {
     this.listaFav = this.favoritosService.favoritosDelUsuario;
 
-    console.log(this.authService.email);
+    //console.log(this.authService.email);
 
     this.nuevoListado = this.listaFav.filter((listaItem)=> listaItem.email === this.authService.email);
   }
@@ -106,7 +106,7 @@ export class FavoritoPage implements OnInit {
    * al usuario a la página de detalle del lugar seleccionado.
    */
   async verLugar(id: string, nombre: string){
-    console.log('Dio click en ' + id);
+    //console.log('Dio click en ' + id);
     this.proveedor.idLugar = id;
     this.proveedor.nombreLugar = nombre;
     this.router.navigateByUrl('lugar', { replaceUrl: true });
